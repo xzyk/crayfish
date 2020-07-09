@@ -18,7 +18,9 @@ use Illuminate\Support\Facades\Route;
 //});
 Auth::routes([ 'verify' => true ]);
 
-Route::get('/', 'PagesController@root')->name('root');
+//Route::get('/', 'PagesController@root')->name('root');
+Route::redirect('/', '/products')->name('root');
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 Route::group([ 'middleware' => [ 'auth', 'verified' ] ], function () {
     // 收货地址
