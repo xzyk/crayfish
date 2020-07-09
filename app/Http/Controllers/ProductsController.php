@@ -70,7 +70,7 @@ class ProductsController extends Controller
         if (!$product->on_sale) {
             throw new InvalidRequestException('商品未上架');
         }
-        
+
         $favored = false;
         // 用户未登录时返回的是 null，已登录时返回的是对应的用户对象
         if($user = $request->user()) {
@@ -78,7 +78,7 @@ class ProductsController extends Controller
             // boolval() 函数用于把值转为布尔值
             $favored = boolval($user->favoriteProducts()->find($product->id));
         }
-        
+
         return view('products.show',compact('product','favored'));
     }
 
@@ -114,5 +114,18 @@ class ProductsController extends Controller
         $user->favoriteProducts()->detach($product);
 
         return [];
+    }
+
+    /**
+     * 收藏列表
+     * @User yaokai
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function favorites(Request $request)
+    {
+        $products = $request->user()->favoriteProducts()->paginate(16);
+
+        return view('products.favorites', ['products' => $products]);
     }
 }
