@@ -67,6 +67,9 @@ class OrdersController extends Controller
             $skuIds = collect($items)->pluck('sku_id');
             $user->cartItems()->whereIn('product_sku_id', $skuIds)->delete();
 
+            //延迟队列处理未支付订单
+            $this->dispatch(new CloseOrder($order, config('services.order_ttl')));
+
             return $order;
         });
 
