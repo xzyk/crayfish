@@ -11,3 +11,8 @@ Homestead.yaml
 npm-debug.log
 yarn-error.log
 .idea
+/public/mix-manifest.json
+/public/js
+/public/css
+_ide_helper.php
+/public/fonts
