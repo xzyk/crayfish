@@ -31,6 +31,6 @@ return [
     ],
 
     // 自动关闭未支付订单时间 秒
-    'order_ttl' => env('ORDER_TTL', 1800),
+    'order_ttl' => env('ORDER_TTL', 30),
 
 ];
