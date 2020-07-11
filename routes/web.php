@@ -22,11 +22,11 @@ Auth::routes(['verify' => true]);
 // 首页
 Route::redirect('/', '/products')->name('root');
 
-Route::get('alipay', function() {
+Route::get('alipay', function () {
     return app('alipay')->web([
         'out_trade_no' => time(),
         'total_amount' => '1',
-        'subject' => 'test subject - 测试',
+        'subject'      => 'test subject - 测试',
     ]);
 });
 Route::group(['middleware' => ['auth', 'verified']], function () {
@@ -52,8 +52,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('orders', 'OrdersController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
     Route::post('orders', 'OrdersController@store')->name('orders.store');
-
+    // 支付方式
+    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+    Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
 });
+
+// 支付回调通知
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
 
 // 商品相关
 Route::get('products', 'ProductsController@index')->name('products.index');
