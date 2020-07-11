@@ -8,35 +8,6 @@
                 <div class="card-header">我的购物车</div>
                 <div class="card-body">
                     <table class="table table-striped">
-                        <!-- 开始 -->
-                        <div>
-                            <form class="form-horizontal" role="form" id="order-form">
-                                <div class="form-group row">
-                                    <label class="col-form-label col-sm-3 text-md-right">选择收货地址</label>
-                                    <div class="col-sm-9 col-md-7">
-                                        <select class="form-control" name="address">
-                                            @foreach($addresses as $address)
-                                                <option
-                                                    value="{{ $address->id }}">{{ $address->full_address }} {{ $address->contact_name }} {{ $address->contact_phone }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-form-label col-sm-3 text-md-right">备注</label>
-                                    <div class="col-sm-9 col-md-7">
-                                        <textarea name="remark" class="form-control" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="offset-sm-3 col-sm-3">
-                                        <button type="button" class="btn btn-primary btn-create-order">提交订单</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!-- 结束 -->
-                        .
                         <thead>
                         <tr>
                             <th><input type="checkbox" id="select-all"></th>
@@ -82,6 +53,34 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <!-- 开始 -->
+                        <div>
+                            <form class="form-horizontal" role="form" id="order-form">
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-md-right">选择收货地址</label>
+                                    <div class="col-sm-9 col-md-7">
+                                        <select class="form-control" name="address">
+                                            @foreach($addresses as $address)
+                                                <option
+                                                    value="{{ $address->id }}">{{ $address->full_address }} {{ $address->contact_name }} {{ $address->contact_phone }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-md-right">备注</label>
+                                    <div class="col-sm-9 col-md-7">
+                                        <textarea name="remark" class="form-control" rows="3"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="offset-sm-3 col-sm-3">
+                                        <button type="button" class="btn btn-primary btn-create-order">提交订单</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 结束 -->
                         </tbody>
                     </table>
                 </div>
