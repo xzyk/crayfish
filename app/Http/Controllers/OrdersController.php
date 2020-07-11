@@ -95,4 +95,17 @@ class OrdersController extends Controller
 
         return $order;
     }
+
+    /**
+     * 订单详情
+     * @User yaokai
+     * @param Order $order
+     * @param Request $request
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function show(Order $order, Request $request)
+    {
+        $this->authorize('own', $order);
+        return view('orders.show', ['order' => $order->load(['items.productSku', 'items.product'])]);
+    }
 }
