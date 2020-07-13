@@ -55,10 +55,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     // 支付方式
     Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
     Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
+    Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 });
 
 // 支付回调通知
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
+Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
 
 // 商品相关
 Route::get('products', 'ProductsController@index')->name('products.index');
