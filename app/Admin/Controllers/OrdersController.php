@@ -6,6 +6,7 @@ use App\Models\Order;
 use Encore\Admin\Controllers\AdminController;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
+use Encore\Admin\Layout\Content;
 use Encore\Admin\Show;
 
 class OrdersController extends AdminController
@@ -115,5 +116,13 @@ class OrdersController extends AdminController
         $form->textarea('extra', __('Extra'));
 
         return $form;
+    }
+
+    public function show($id, Content $content)
+    {
+        return $content
+            ->header('查看订单')
+            // body 方法可以接受 Laravel 的视图作为参数
+            ->body(view('admin.orders.show', ['order' => Order::find($id)]));
     }
 }
