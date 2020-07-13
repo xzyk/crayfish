@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Events\OrderPaid;
+use App\Events\OrderReviewed;
 use App\Listeners\SendOrderPaidMail;
+use App\Listeners\UpdateProductRating;
 use App\Listeners\UpdateProductSoldCount;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -18,12 +20,17 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
+        Registered::class    => [
             SendEmailVerificationNotification::class,
         ],
-        OrderPaid::class  => [
+        // 付款后
+        OrderPaid::class     => [
             UpdateProductSoldCount::class,
             SendOrderPaidMail::class,
+        ],
+        // 评价后
+        OrderReviewed::class => [
+            UpdateProductRating::class,
         ],
     ];
 

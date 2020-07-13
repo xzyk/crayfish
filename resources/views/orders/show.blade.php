@@ -6,7 +6,8 @@
         <div class="col-lg-10 offset-lg-1">
             <div class="card">
                 <div class="card-header">
-                    <h4>订单详情</h4>
+                    <h4>订单详情 <a class="float-right btn btn-primary" href="{{ route('orders.index') }}">返回订单列表</a></h4>
+
                 </div>
                 <div class="card-body">
                     <table class="table">
