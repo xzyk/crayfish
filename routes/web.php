@@ -60,11 +60,13 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
     Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
     Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
+    // 优惠券
+    Route::get('coupon_codes/{code}', 'CouponCodesController@show')->name('coupon_codes.show');
 });
 
 // 支付回调通知
 Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
-Route::get('payment/{order}/wechat', 'PaymentController@payByWechat')->name('payment.wechat');
+Route::post('payment/wechat/notify', 'PaymentController@wechatNotify')->name('payment.wechat.notify');
 Route::post('payment/wechat/refund_notify', 'PaymentController@wechatRefundNotify')->name('payment.wechat.refund_notify');
 
 // 商品相关
